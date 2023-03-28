@@ -105,7 +105,7 @@ export function ChatBox() {
     console.log("response===>", response);
 
     const data = await response.json();
-    const imggg = await createImage(message);
+    //const imggg = await createImage(message);
     //console.log("infoImage===>", imggg);
     setMessages([
       ...newMessages,
