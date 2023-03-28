@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { type Message, initialMessages, ChatMessage } from "./chat-message";
 import { useCookies } from "react-cookie";
 
+import { apiKey } from "./config";
 const COOKIE_NAME = "next-openai-chatgpt";
 
 const PreLoader = () => (
@@ -41,7 +42,7 @@ const InputMessage = ({ input, setInput, sendMessage }: any) => (
         setInput("");
       }}
     >
-      Ask
+      OK
     </button>
   </div>
 );
@@ -62,13 +63,14 @@ export function ChatBox() {
 
   const createImage = async (query: string): Promise<String> => {
     const { Configuration, OpenAIApi } = require("openai");
+    console.log("api_key-->", apiKey);
     const configuration = new Configuration({
-      apiKey: "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",
+      apiKey: apiKey,
       ln: "en",
     });
     const openai = new OpenAIApi(configuration);
     const response = await openai.createImage({
-      prompt: query,
+      prompt: query + " , can you give a diagram? ",
       n: 2,
       size: "256x256",
     });
@@ -106,7 +108,11 @@ export function ChatBox() {
     //console.log("infoImage===>", imggg);
     setMessages([
       ...newMessages,
-      { message: data.text.trim(), who: "bot", image: imggg } as Message,
+      {
+        message: data.text.trim() + ". Also see this diagram here:",
+        who: "bot",
+        image: imggg,
+      } as Message,
     ]);
 
     setLoading(false);

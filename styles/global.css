@@ -65,7 +65,7 @@ section + section {
   margin: 10px 0 15px;
 }
 .prompt.right .msg {
-  color: gray;
+  color: "#fff";
 }
 .name {
   font-weight: bold;
@@ -100,11 +100,12 @@ button {
 }
 .left {
   float: left;
-  background: #10a37f;
 }
 
 .right {
   float: right;
+  background: #10a37f;
+  color: "#fff";
 }
 
 .loader {

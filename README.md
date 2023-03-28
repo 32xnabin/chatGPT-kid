@@ -1,10 +1,6 @@
-## OpenAI ChatGPT + NextJs
+## ImageGPT ,OpenAI ChatGPT and NextJs
 
-This example shows how to implement a simple chat bot using Next.js and [OpenAI API](https://beta.openai.com/docs/api-reference/completions/create).
-
-Online Demo: https://next-openai-chatgpt.vercel.app
-
-![Preview](preview.png)
+![Preview](demo.gif)
 
 ### Set up environment variables
 
