@@ -102,6 +102,7 @@ export function ChatBox() {
         user: cookie[COOKIE_NAME],
       }),
     });
+    console.log("response===>", response);
 
     const data = await response.json();
     const imggg = await createImage(message);
