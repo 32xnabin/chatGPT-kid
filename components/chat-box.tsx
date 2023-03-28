@@ -63,7 +63,7 @@ export function ChatBox() {
 
   const createImage = async (query: string): Promise<String> => {
     const { Configuration, OpenAIApi } = require("openai");
-    console.log("api_key-->", apiKey);
+
     const configuration = new Configuration({
       apiKey: apiKey,
       ln: "en",
