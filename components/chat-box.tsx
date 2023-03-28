@@ -6,7 +6,7 @@ const COOKIE_NAME = "next-openai-chatgpt";
 
 const PreLoader = () => (
   <div className="prompt left">
-    <p className="name">AI</p>
+    <p className="name">Teacher</p>
     <div className="loader">
       <div></div>
       <div></div>
@@ -23,7 +23,7 @@ const InputMessage = ({ input, setInput, sendMessage }: any) => (
       aria-label="chat input"
       required
       value={input}
-      placeholder="Type a message to start the conversation"
+      placeholder="like: what is photosynthesis?"
       onKeyDown={(e) => {
         if (e.key === "Enter") {
           sendMessage(input);
@@ -113,7 +113,7 @@ export function ChatBox() {
   };
 
   return (
-    <div className="dialogue">
+    <div>
       {messages.map(({ message, who, image }, index) => (
         <ChatMessage key={index} who={who} message={message} image={image} />
       ))}

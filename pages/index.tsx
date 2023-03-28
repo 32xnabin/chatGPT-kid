@@ -4,11 +4,12 @@ function Home() {
   return (
     <div className="wrapper">
       <section>
-        <h1>hey ! ask a AI anything </h1>
-        <p style={{ fontWeight: "bold" }}>like: 'what is a solar system?'</p>
-        <p style={{ color: "#3c8f4b" }}>
-          AI will reply you with definition and image
-        </p>
+        <div style={{ textAlign: "center" }}>
+          <h1>Your AI teacher</h1>
+          <img width="250" style={{ margin: "0px auto" }} src="/kid1.png" />
+
+          <p style={{ fontWeight: "bold", color: "#3c8f4b" }}>VIA ChatGPT</p>
+        </div>
       </section>
       <section>
         <ChatBox />

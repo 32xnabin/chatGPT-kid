@@ -5,7 +5,7 @@ if (!process.env.OPENAI_API_KEY) {
   throw new Error("Missing Environment Variable OPENAI_API_KEY");
 }
 
-const botName = "AI";
+const botName = "Teacher";
 const userName = "User";
 
 const generatePromptFromMessages = (messages: Message[]) => {
