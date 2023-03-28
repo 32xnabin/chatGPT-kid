@@ -112,7 +112,7 @@ export function ChatBox() {
       {
         message: data.text.trim() + ". Also see this diagram here:",
         who: "bot",
-        image: imggg,
+        image: "",
       } as Message,
     ]);
 
