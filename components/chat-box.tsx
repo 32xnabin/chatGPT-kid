@@ -91,6 +91,13 @@ export function ChatBox() {
       { message: message, who: "user" } as Message,
     ];
     setMessages(newMessages);
+    const newMessages1 = [
+      ...messages,
+      {
+        message: message + ", answer only if a school kid should know this.",
+        who: "user",
+      } as Message,
+    ];
 
     const response = await fetch("/api/chat", {
       method: "POST",
