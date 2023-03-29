@@ -69,16 +69,22 @@ export function ChatBox() {
       ln: "en",
     });
     const openai = new OpenAIApi(configuration);
-    const response = await openai.createImage({
-      prompt: query + " , can you give a diagram? ",
-      n: 2,
-      size: "256x256",
-    });
-
-    console.log("res===>", response.data.data[0].url);
-    console.log("res===>", response);
-    setInfoImage(response.data.data[0].url);
-    return response.data.data[0].url;
+    try {
+      const response = await openai.createImage({
+        prompt:
+          "Only if a school kid should know this:," +
+          query +
+          " , can you give a diagram? ",
+        n: 2,
+        size: "256x256",
+      });
+      console.log("res===>", response.data.data[0].url);
+      console.log("res===>", response);
+      setInfoImage(response.data.data[0].url);
+      return response.data.data[0].url;
+    } catch {
+      return "https://cdn.pixabay.com/photo/2022/04/10/17/28/stop-sign-7123858_960_720.png";
+    }
   };
 
   const sendMessage = async (message: string) => {
@@ -88,16 +94,12 @@ export function ChatBox() {
 
     const newMessages = [
       ...messages,
-      { message: message, who: "user" } as Message,
-    ];
-    setMessages(newMessages);
-    const newMessages1 = [
-      ...messages,
       {
-        message: message + ", answer only if a school kid should know this.",
+        message: "Answer only if a school kid should know this : " + message,
         who: "user",
       } as Message,
     ];
+    setMessages(newMessages);
 
     const response = await fetch("/api/chat", {
       method: "POST",
@@ -118,7 +120,7 @@ export function ChatBox() {
     setMessages([
       ...newMessages,
       {
-        message: data.text.trim() + ". Also see this diagram here:",
+        message: data.text.trim(),
         who: "bot",
         image: imggg,
       } as Message,

@@ -16,13 +16,16 @@ export function ChatMessage({ who = "bot", message, image }: Message) {
   if (!message) {
     return null;
   }
+  const getTrimmedMessage = (message: string) => {
+    return message.substring(message.indexOf(":") + 1);
+  };
 
   return (
     <div className={`prompt ${who != "bot" ? "right" : "left"}`}>
       <p className="name">{who != "bot" ? "You" : "Teacher"}</p>
       <div>
         <p className="msg">
-          {message}
+          {getTrimmedMessage(message)}
           {image !== "" && who == "bot" && (
             <img src={image} width="auto" height="300" alt="no image" />
           )}
