@@ -105,14 +105,15 @@ export function ChatBox() {
     console.log("response===>", response);
 
     const data = await response.json();
-    //const imggg = await createImage(message);
-    //console.log("infoImage===>", imggg);
+    //JSON.parse(data.trim());
+    const imggg = await createImage(message);
+    console.log("infoImage===>", imggg);
     setMessages([
       ...newMessages,
       {
         message: data.text.trim() + ". Also see this diagram here:",
         who: "bot",
-        image: "",
+        image: imggg,
       } as Message,
     ]);
 

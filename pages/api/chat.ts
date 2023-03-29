@@ -57,7 +57,7 @@ export default async function handler(req: NextRequest) {
   });
 
   const data = await response.json();
-
+  console.log("response==openapi===>", data);
   if (data.error) {
     console.error("OpenAI API error: ", data.error);
     return NextResponse.json({
