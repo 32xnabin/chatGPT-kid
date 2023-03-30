@@ -2,7 +2,7 @@ import { ChatBox } from "../components/chat-box";
 
 function Home() {
   return (
-    <div className="wrapper">
+    <div className="wrapper" id="mainWrapper">
       <section>
         <div style={{ textAlign: "center" }}>
           <h1>Your AI teacher</h1>

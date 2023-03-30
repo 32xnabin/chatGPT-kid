@@ -89,6 +89,10 @@ export function ChatBox() {
 
   const sendMessage = async (message: string) => {
     setLoading(true);
+    const scrollingElement = document.scrollingElement || document.body;
+    setTimeout(() => {
+      scrollingElement.scrollTop = scrollingElement.scrollHeight;
+    }, 1000);
 
     //const res = searchGIF(message);
 
@@ -100,6 +104,10 @@ export function ChatBox() {
       } as Message,
     ];
     setMessages(newMessages);
+    // const mainWrapper = document.getElementsByTagName("body");
+    // if (mainWrapper && mainWrapper?.scrollTop) {
+    //   mainWrapper.scrollTop = mainWrapper.scrollHeight;
+    // }
 
     const response = await fetch("/api/chat", {
       method: "POST",
@@ -125,6 +133,14 @@ export function ChatBox() {
         image: imggg,
       } as Message,
     ]);
+
+    // if (mainWrapper && mainWrapper?.scrollTop) {
+    //   mainWrapper.scrollTop = mainWrapper.scrollHeight;
+    // }
+
+    setTimeout(() => {
+      scrollingElement.scrollTop = scrollingElement.scrollHeight;
+    }, 1000);
 
     setLoading(false);
   };
