@@ -9,16 +9,16 @@ function Home() {
         <div style={{ textAlign: "center" }}>
           <h1>Your AI teacher</h1>
           <img width="250" style={{ margin: "0px auto" }} src="/kid1.png" />
-          <Radio
+          {/* <Radio
             setCurrentRadioValue={setCurrentRadioValue}
             currentRadioValue={currentRadioValue}
-          />
+          /> */}
 
           <p style={{ fontWeight: "bold", color: "#3c8f4b" }}>VIA ChatGPT</p>
         </div>
       </section>
       <section>
-        <ChatBox subject={currentRadioValue} />
+        <ChatBox subject={""} />
       </section>
     </div>
   );

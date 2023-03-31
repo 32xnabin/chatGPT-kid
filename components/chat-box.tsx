@@ -92,13 +92,11 @@ export function ChatBox(props: any) {
     setTimeout(() => {
       scrollingElement.scrollTop = scrollingElement.scrollHeight;
     }, 1000);
-
+    //and also inform this is not related to  ${props.subject}
     const newMessages = [
       ...messages,
       {
-        message:
-          `Answer only if a school kid should know this and also inform this is not related to  ${props.subject} :` +
-          message,
+        message: `Answer only if a school kid should know this :` + message,
         who: "user",
       } as Message,
     ];
