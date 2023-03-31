@@ -18,15 +18,13 @@ export function Dictaphone(props) {
       /> */}
       <button
         style={{
-          height: "20px",
-          width: "40px",
           padding: "8px",
           marginLeft: "5px",
         }}
         type="submit"
         onClick={listen}
       >
-        🎤
+        <img width="40" src="/mic.png" />
       </button>
       {/* <button type="submit" onClick={stop}>
         OK

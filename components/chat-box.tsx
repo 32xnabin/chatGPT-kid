@@ -165,7 +165,11 @@ export function ChatBox(props: any) {
       {loading && <PreLoader />}
 
       <div className="question">
-        {<label style={{ padding: "4px", background: "#eee" }}>{result}</label>}
+        {
+          <label style={{ padding: "4px", background: "#eee" }}>
+            YOU: {result}
+          </label>
+        }
 
         {/* <InputMessage
         input={input}
