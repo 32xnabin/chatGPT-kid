@@ -27,7 +27,7 @@ export function ChatMessage({ who = "bot", message, image }: Message) {
         <p className="msg">
           {getTrimmedMessage(message)}
           {image !== "" && who == "bot" && (
-            <img src={image} width="auto" height="300" alt="no image" />
+            <img src={image} height="auto" width="200" alt="no image" />
           )}
         </p>
       </div>

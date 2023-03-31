@@ -5,6 +5,8 @@ import { useCookies } from "react-cookie";
 import { apiKey } from "./config";
 const COOKIE_NAME = "next-openai-chatgpt";
 
+import { Dictaphone } from "./Dictaphone";
+
 const PreLoader = () => (
   <div className="prompt left">
     <p className="name">Teacher</p>
@@ -47,7 +49,7 @@ const InputMessage = ({ input, setInput, sendMessage }: any) => (
   </div>
 );
 
-export function ChatBox() {
+export function ChatBox(props: any) {
   const [messages, setMessages] = useState<Message[]>(initialMessages);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
@@ -71,10 +73,7 @@ export function ChatBox() {
     const openai = new OpenAIApi(configuration);
     try {
       const response = await openai.createImage({
-        prompt:
-          "Only if a school kid should know this:," +
-          query +
-          " , can you give a diagram? ",
+        prompt: query,
         n: 2,
         size: "256x256",
       });
@@ -94,20 +93,16 @@ export function ChatBox() {
       scrollingElement.scrollTop = scrollingElement.scrollHeight;
     }, 1000);
 
-    //const res = searchGIF(message);
-
     const newMessages = [
       ...messages,
       {
-        message: "Answer only if a school kid should know this : " + message,
+        message:
+          `Answer only if a school kid should know this and also inform this is not related to  ${props.subject} :` +
+          message,
         who: "user",
       } as Message,
     ];
     setMessages(newMessages);
-    // const mainWrapper = document.getElementsByTagName("body");
-    // if (mainWrapper && mainWrapper?.scrollTop) {
-    //   mainWrapper.scrollTop = mainWrapper.scrollHeight;
-    // }
 
     const response = await fetch("/api/chat", {
       method: "POST",
@@ -134,15 +129,33 @@ export function ChatBox() {
       } as Message,
     ]);
 
-    // if (mainWrapper && mainWrapper?.scrollTop) {
-    //   mainWrapper.scrollTop = mainWrapper.scrollHeight;
-    // }
-
     setTimeout(() => {
       scrollingElement.scrollTop = scrollingElement.scrollHeight;
     }, 1000);
 
     setLoading(false);
+  };
+  const [result, setResult] = useState("");
+
+  useEffect(() => {
+    console.log("listening.....", result);
+    setPaused(false);
+    if (result !== "") {
+      setInput(result);
+
+      detectPauseOfThreeSeconds();
+    }
+  }, [result]);
+
+  const [paused, setPaused] = useState(false);
+  const detectPauseOfThreeSeconds = () => {
+    setPaused(true);
+    setTimeout(() => {
+      if (result !== "" && result.length > 5 && paused) {
+        sendMessage(result);
+        setResult("");
+      }
+    }, 3000);
   };
 
   return (
@@ -153,11 +166,16 @@ export function ChatBox() {
 
       {loading && <PreLoader />}
 
-      <InputMessage
+      <div className="question">
+        {<label style={{ padding: "4px", background: "#eee" }}>{result}</label>}
+
+        {/* <InputMessage
         input={input}
         setInput={setInput}
         sendMessage={sendMessage}
-      />
+      /> */}
+        <Dictaphone result={result} setResult={setResult} />
+      </div>
     </div>
   );
 }

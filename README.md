@@ -1,6 +1,6 @@
 ## ImageGPT ,OpenAI ChatGPT and NextJs
 
-![Preview](demo.gif)
+![Preview](demo1.gif)
 
 ### Set up environment variables
 
